@@ -1,10 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Incio</title>
-</head>
-<body>
+
 <h1>Pagina de Incio</h1>
-</body>
-</html>
+{{ titulo }}<br/>
+{{ request.user }}<br/>
+<hr/>
+<br/>
+{% if form %}
+<form method="POST" action=""> {% csrf_token %}
+   {{ el_form.as_p }}
+    <input type="submit" value="Registrame"/>
+</form>
+{% endif %}
+
