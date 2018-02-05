@@ -1,13 +1,54 @@
 
+{% extends "base.html" %}
+
+{% load crispy_forms_tags %}
+
+{% block head_title %}Bienvenidos |{{block.super}}{% endblock %}
+
+{% block jumbotron %}
+    <main role="main" class="container">
+        <div class="row">
+            <div class="col-sm-6">
+              <div class="jumbotron">
+                <h1>Probar Django 2.0</h1>
+                <p class="lead">This example is a quick exercise to illustrate how the top-aligned navbar works. As you scroll, this navbar remains in its original position and moves with the rest of the page.</p>
+                <a class="btn btn-lg btn-primary" href="../../components/navbar/" role="button">View navbar docs &raquo;</a>
+              </div>
+            </div>
+            <div class="col-sm-6" style="background-color: black; height:300px">
+
+            </div>
+        </div>
+    </main>
+{% endblock %}
+
 <h1>Pagina de Incio</h1>
+
 {{ titulo }}<br/>
 {{ request.user }}<br/>
 <hr/>
 <br/>
-{% if form %}
-<form method="POST" action=""> {% csrf_token %}
-   {{ el_form.as_p }}
-    <input type="submit" value="Registrame"/>
-</form>
-{% endif %}
+
+{% block content %}
+<div class="row">
+    <div class="col-sm-3 pull-right">
+        <p class="lead text-alain-center">{{titulo}}</p>
+        <form method="POST" action=""> {% csrf_token %}
+        {{ el_form|crispy }}
+        <input type="submit" value="Registrame"/>
+        </form>
+    </div>
+    <div class="col-sm-3">
+        <p class="lead text-alain-center" >Creado con Django &amp; Bootstrap</p>
+    </div>
+    <div class="col-sm-3">
+        <p class="lead text-alain-center" >Y con mucho amor, claro</p>
+    </div>
+    <div class="col-sm-3">
+        <p class="lead text-alain-center" >Codigo Abierto</p>
+    </div>
+</div>
+
+
+{% endblock %}
 
