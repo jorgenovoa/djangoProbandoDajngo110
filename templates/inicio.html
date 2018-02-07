@@ -1,6 +1,5 @@
 
 {% extends "base.html" %}
-
 {% load crispy_forms_tags %}
 
 {% block head_title %}Bienvenidos |{{block.super}}{% endblock %}
@@ -22,12 +21,10 @@
     </main>
 {% endblock %}
 
-<h1>Pagina de Incio</h1>
-
-{{ titulo }}<br/>
-{{ request.user }}<br/>
-<hr/>
-<br/>
+<!--{{ titulo }}<br/>-->
+<!--{{ request.user }}<br/>-->
+<!--<hr/>-->
+<!--<br/>-->
 
 {% block content %}
 <div class="row">
@@ -35,7 +32,7 @@
         <p class="lead text-alain-center">{{titulo}}</p>
         <form method="POST" action=""> {% csrf_token %}
         {{ el_form|crispy }}
-        <input type="submit" value="Registrame"/>
+        <input type="submit" value="Recibir"/>
         </form>
     </div>
     <div class="col-sm-3">
@@ -48,7 +45,5 @@
         <p class="lead text-alain-center" >Codigo Abierto</p>
     </div>
 </div>
-
-
 {% endblock %}
 

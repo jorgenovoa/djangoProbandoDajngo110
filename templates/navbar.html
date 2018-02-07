@@ -16,9 +16,35 @@
             <a class="nav-link" href="{% url 'about' %}">About</a>
           </li>
         </ul>
-        <form class="form-inline mt-2 mt-md-0">
-          <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
-          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-        </form>
+
+        <!--<form class="form-inline mt-3 mt-md-0">-->
+        <ul class="nav navbar-nav navbar-right">
+            {% if request.user.is_authenticated %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'auth_logout' %}">Salir</a>
+                </li>
+            {% else %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'registration_register' %}">Registrate</a>
+                </li>
+                <!--<li class="nav-item">-->
+                    <!--<a class="nav-link" href="{% url 'auth_login' %}">Entrar</a>-->
+                <!--</li>-->
+            {% endif %}
+        </ul>
+
+
+         {% if not request.user.is_authenticated  and not "accounts/login" in request.get_full_path %}
+         <form class="navbar-form navbar-right" method="POST" action="{% url "auth_login" %}">{% csrf_token %}
+            <div class="form-group">
+                <input type="text" class="form-control" name="username" placeholder="Usuario" />
+            </div>
+            <div class="form-group">
+                <input type="password" class="form-control" name="password" placeholder="Clave" />
+            </div>
+            <button type="submit" class="btn btn-default">Entrar</button>
+         </form>
+        {% endif %}
+
       </div>
     </nav>
