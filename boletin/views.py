@@ -8,7 +8,7 @@ from django.views.generic import TemplateView
 
 from boletin.models import Registrado
 from .forms import RegModelForm, ContactForm
-
+from .models import Registrado
 
 # Create your views here.
 def inicio(request):
@@ -41,15 +41,18 @@ def inicio(request):
                 "titulo" : "Gracias %s!" %(email)
             }
 
-        print(instance)
-        print(instance.timestamp)
-        # form_data = form.cleaned_data
-        # print(form_data)
-        # abc= form_data.get("email")
-        # nom = form_data.get("nombre")
-        # obj = Registrado.objects.create(email=abc,nombre=nom)
+    if request.user.is_authenticated and request.user.is_staff:
+        i=1
+        for instance in Registrado.objects.all():
+            i+=1
+            print(instance.nombre)
+        print(i)
 
+        queryset = Registrado.objects.all().order_by("-timestamp")
 
+        context = {
+            "queryset":queryset,
+        }
     return render(request, 'inicio.html', context)
     # return HttpResponse('hello,world!')
 
